@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+</br>
+</br>
+</br></br>
+</br>
+</br>
+  <form method="get">
+    <div class="well">
+      <h4 style="margin-top: 0">Filter</h4>
+      <div class="row">
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.Branch.label_tag }}
+          {% render_field filter.form.Branch class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.Semester.label_tag }}
+          {% render_field filter.form.Semester class="form-control" %}
+        </div>
+        <div class="form-group col-sm-4 col-md-3">
+          {{ filter.form.Batch.label_tag }}
+          {% render_field filter.form.Batch class="form-control" %}
+        </div>
+        
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span> Search
+      </button>
+    </div>
+  </form>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Branch</th>
+        <th>Semester</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Home Town</th>     
+        <th>Ph_No</th>             
+        <th>CGPA</th>              
+        <th>Percentage_in_10th</th>
+        <th>Percentage_in_12th</th>                             
+        <th>Batch</th>             
+        <th>Email</th>                     
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in filter.qs %}
+        <tr>
+          <td>{{ user.Branch }}</td>
+          <td>{{ user.Semester }}</td>
+          <td>{{ user.first_name }}</td>
+          <td>{{ user.last_name }}</td>
+          <td>{{ user.Home_Town}}</td>
+          <td>{{ user.Ph_No }}</td>
+          <td>{{ user.CGPA }}</td>
+          <td>{{ user.Percentage_in_10th }}</td>
+          <td>{{ user.Percentage_in_12th }}</td>
+          <td>{{ user.Batch }}</td>
+          <td>{{ user.Email }}</td>
+          
+          
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No data</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock content %}

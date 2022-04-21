@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+</br>
+</br>
+</br>
+
+{% if user.is_authenticated %}
+    <div class="col-4 offset-4 mb-5 mt-5" >
+    <h3>Update Your Registered Information in Training and Placement Cell</h3>
+
+    <form method="POST"  enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form|crispy }}
+        <button class="btn btn-secondary" type="submit">Update</button>
+
+    </form>
+
+    </div>
+{% else %}
+
+Please log in to continue...
+
+{% endif %}
+
+{% endblock content%}

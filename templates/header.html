@@ -1,0 +1,47 @@
+{% load static %}
+<!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container">
+      <div class="header-container d-flex align-items-center">
+        <div class="logo mr-auto">
+          <!--<a href="{% url 'index'%}"><img src="{% static 'img/apple-touch-icon.png'%}" alt="" class="img-fluid"></a>-->
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <h1 class="text-light"><a href="{% url 'index'%}"><span>Alumini</span></a></h1>
+          
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            
+            <li><a href="{% url 'index'%}#about">Principal's Message</a></li>
+            <li><a href="{% url 'index'%}#why-us">Why Us</a></li>
+            {% if user.is_staff %}
+            <li class="drop-down"><a href="#">Admin Section</a>
+              <ul>
+                <li><a href="{% url 'filter'%}">Registered Alumini Database</a></li>
+                <li><a href="{% url 'export_users_csv'%}">Export Users Data</a></li>
+                
+              </ul>
+            </li>
+            {% elif user.is_authenticated %}
+            <li class="drop-down"><a href="#">Profile</a>
+              <ul>
+                
+                <li><a href="{% url 'tpregister'%}">Register To Alumini Cell</a></li>
+                <li><a href="{% url 'index'%}#cta">Important Alerts & Announcements</a></li>
+                
+              </ul>
+            </li>
+            {% else %}
+            {% endif %}
+            <li><a href="{% url 'index'%}#contact">Contact Us</a></li>
+            {% if user.is_authenticated %}
+            <li class="get-started"><a href="{% url 'logout'%}">Logout</a></li>
+            {% else %}
+            <li class="get-started"><a href="{% url 'login'%}">Log In</a></li>
+            {% endif %}
+          </ul>
+        </nav><!-- .nav-menu -->
+      </div><!-- End Header Container -->
+    </div>
+  </header><!-- End Header -->
